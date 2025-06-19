@@ -1,14 +1,17 @@
 [build]
-  command = "cd client && npm install && npm run build && cd ../server && npm install"
-  publish = "client/build"  # Changed from dist to build for Create React App
+  command = "cd client && npm install && npm run build"
+  publish = "client/build"
   functions = "netlify/functions"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
   
-# Ensure client-side routing works
 [[redirects]]
   from = "/*"
   to = "/index.html"
