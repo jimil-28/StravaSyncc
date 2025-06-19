@@ -203,7 +203,7 @@ async function handlePhotoUpload(req, res) {
   console.log(`File copied to: ${localFilePath}`);
   
   // Set the URL to access the file - make sure the path matches what your server serves
-  photoUrl = `http://localhost:3001/uploads/${uniqueFilename}`;
+  photoUrl = `/.netlify/functions/api/uploads/${uniqueFilename}`;
   
   // For non-mock activities, also try to upload to Strava (but don't fail if it doesn't work)
   if (!activity.isMock) {

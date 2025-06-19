@@ -35,7 +35,7 @@ const PhotoGallery = ({ photos, activityId, onPhotoAdded, onPhotoDeleted, onPrim
       const token = await auth.currentUser.getIdToken();
       
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', `http://localhost:3001/photos/${activityId}`);
+      xhr.open('POST', `/.netlify/functions/api/photos/${activityId}`);
       xhr.setRequestHeader('Authorization', `Bearer ${token}`);
 
       xhr.upload.addEventListener('progress', (event) => {
@@ -100,7 +100,7 @@ const PhotoGallery = ({ photos, activityId, onPhotoAdded, onPhotoDeleted, onPrim
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch(`http://localhost:3001/photos/${photoId}`, {
+      const response = await fetch(`/.netlify/functions/api/photos/${photoId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -124,7 +124,7 @@ const PhotoGallery = ({ photos, activityId, onPhotoAdded, onPhotoDeleted, onPrim
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch(`http://localhost:3001/photos/${photoId}/primary`, {
+      const response = await fetch(`/.netlify/functions/api/photos/${photoId}/primary`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`

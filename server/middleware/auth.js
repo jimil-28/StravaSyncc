@@ -1,4 +1,4 @@
-const admin = require("../firebase");
+const admin = require('../../netlify/functions/firebase');
 
 const verifyToken = async (req, res, next) => {
   let idToken = null;

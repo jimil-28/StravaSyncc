@@ -28,7 +28,7 @@ const Dashboard = () => {
   const fetchActivities = useCallback(async (token) => {
     try {
       setActivitiesLoading(true);
-      const response = await fetch("http://localhost:3001/activities", {
+      const response = await fetch("/.netlify/functions/api/activities", {
         headers: {
           Authorization: `Bearer ${token || await auth.currentUser.getIdToken()}`,
         },
@@ -82,7 +82,7 @@ const Dashboard = () => {
       if (!currentUser) return;
       
       const token = await currentUser.getIdToken();
-      const response = await fetch("http://localhost:3001/me", {
+      const response = await fetch("/.netlify/functions/api/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -107,7 +107,7 @@ const Dashboard = () => {
         // Fetch user data from backend
         try {
           const token = await currentUser.getIdToken();
-          const response = await fetch("http://localhost:3001/me", {
+          const response = await fetch("/.netlify/functions/api/me", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -137,7 +137,7 @@ const Dashboard = () => {
       setIsSyncing(true);
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch("http://localhost:3001/activities/sync", {
+      const response = await fetch("/.netlify/functions/api/activities/sync", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -167,7 +167,7 @@ const Dashboard = () => {
       setIsSyncing(true); // Reuse the same loading state
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch("http://localhost:3001/activities/sync-photos", {
+      const response = await fetch("/.netlify/functions/api/activities/sync-photos", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -199,7 +199,7 @@ const Dashboard = () => {
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch(`http://localhost:3001/photos/activity/${activity.id}`, {
+      const response = await fetch(`/.netlify/functions/api/photos/activity/${activity.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -228,7 +228,7 @@ const Dashboard = () => {
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch(`http://localhost:3001/activities/${editActivity.id}`, {
+      const response = await fetch(`/.netlify/functions/api/activities/${editActivity.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -305,7 +305,7 @@ const Dashboard = () => {
       const token = await user.getIdToken();
       
       // Direct redirection approach instead of popup
-      window.location.href = `http://localhost:3001/strava/connect?token=${token}`;
+      window.location.href = `/.netlify/functions/api/strava/connect?token=${token}`;
     } catch (error) {
       console.error("Error connecting to Strava:", error);
       setIsConnectingStrava(false);
@@ -321,7 +321,7 @@ const Dashboard = () => {
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch("http://localhost:3001/activities/mock", {
+      const response = await fetch("/.netlify/functions/api/activities/mock", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -349,7 +349,7 @@ const Dashboard = () => {
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch("http://localhost:3001/activities/mock", {
+      const response = await fetch("/.netlify/functions/api/activities/mock", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -380,7 +380,7 @@ const Dashboard = () => {
     try {
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch("http://localhost:3001/activities/all", {
+      const response = await fetch("/.netlify/functions/api/activities/all", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -412,7 +412,7 @@ const Dashboard = () => {
     try {
       // First disconnect
       const token = await auth.currentUser.getIdToken();
-      await fetch("http://localhost:3001/strava/disconnect", {
+      await fetch("/.netlify/functions/api/strava/disconnect", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -436,7 +436,7 @@ const Dashboard = () => {
       // Get fresh token
       const token = await auth.currentUser.getIdToken();
       
-      const response = await fetch("http://localhost:3001/activities/test-auth", {
+      const response = await fetch("/.netlify/functions/api/activities/test-auth", {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -476,7 +476,7 @@ const Dashboard = () => {
     
     try {
       const token = await auth.currentUser.getIdToken();
-      const response = await fetch("http://localhost:3001/strava/disconnect", {
+      const response = await fetch("/.netlify/functions/api/strava/disconnect", {
         method: "POST",
         headers: { 
           Authorization: `Bearer ${token}` 

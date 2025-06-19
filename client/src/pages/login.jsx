@@ -12,7 +12,7 @@ const Login = () => {
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken();
 
-      const res = await fetch("http://localhost:3001/me", {
+      const res = await fetch("/.netlify/functions/api/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
